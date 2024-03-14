@@ -2,7 +2,7 @@
 Perlin Noise Flow Background Using p5.js
 ## Features
 
-- You can also add Content to '<body>' tag
+- You can also add Content to 'body' tag
 
 ## Documentation
 
