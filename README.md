@@ -6,4 +6,4 @@ Perlin Noise Flow Background Using p5.js
 
 ## Documentation
 
-[Test live only workable on Desktop](http://godara.kesug.com/index4.html)
+[Test live Demo](http://godara.kesug.com/index4.html)
