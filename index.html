@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.dom.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.sound.js"></script> -->
+    <title>Perlin Noise Flow Background</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    body{
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
+    canvas{
+        /* defaultCanvas0 this is the id of the canvas if you want to perform some oprations*/
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: -1;
+    }
+</style>
+<body>
+    <!-- All the content will be added in the center of the body (vertically and horizontally) above the canvas element -->
+    <!-- Your Content should be written here -->
+</body>
+<script>
+let particles = [];
+const maximum = 10000;
+const noiseScale = 0.01;
+function setup(){
+    createCanvas(window.innerWidth, window.innerHeight)
+    for(let i = 0; i < maximum; ++i){
+        particles.push(createVector(random(width), random(height)));
+    }
+    stroke(255);
+    // setInterval(resetCanvas, 5000);
+}
+function draw(){
+    background(0, 10);
+    for(let i = 0; i < maximum; ++i){
+        let p = particles[i];
+        let n = noise(p.x * noiseScale, p.y * noiseScale);
+        let a = TAU * n;
+        let dx = cos(a);
+        let dy = sin(a);
+        let nx = p.x + dx;
+        let ny = p.y + dy;
+        line(p.x, p.y, nx, ny);
+        p.x = nx;
+        p.y = ny;
+        if(!onScreen(p)){
+            p.x = random(width);
+            p.y = random(height);
+        }
+    }
+}
+function onScreen(v){
+    return v.x >= 0 && v.x <= width && v.y >= 0 && v.y <= height;
+}
+</script>
+</html>
